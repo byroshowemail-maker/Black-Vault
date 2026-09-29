@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="hu" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPERATION: BLACK VAULT | Hivatalos Játékszabálykönyv</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkbg: '#05070a',
+                        cardbg: '#0a0e17',
+                        bordercolor: '#1e293b',
+                        redteam: '#ef4444',
+                        blueteam: '#3b82f6',
+                        tacticalgreen: '#10b981',
+                        tacticalorange: '#f59e0b',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: #05070a;
+            color: #f8fafc;
+        }
+        .font-mono-tech {
+            font-family: 'Share Tech Mono', monospace;
+        }
+        .scanline {
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.3));
+            background-size: 100% 4px;
+        }
+        .hud-border {
+            border: 1px solid #1e293b;
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.05);
+        }
+        .hud-border:hover {
+            border-color: #10b981;
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.2);
+        }
+    </style>
+</head>
+<body class="scanline min-h-screen selection:bg-tacticalgreen selection:text-black">
+
+    <!-- Top Navigation -->
+    <nav class="sticky top-0 z-50 bg-darkbg/90 backdrop-blur-md border-b border-bordercolor">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded bg-tacticalgreen/20 border border-tacticalgreen flex items-center justify-center text-tacticalgreen text-xl font-bold font-mono-tech">
+                        BV
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono-tech text-tacticalgreen block tracking-widest">TACTICAL OS v4.2</span>
+                        <h1 class="text-lg font-bold tracking-wider text-white">OP: BLACK VAULT</h1>
+                    </div>
+                </div>
+                <div class="hidden md:flex items-center space-x-6 text-sm font-semibold">
+                    <a href="#home" class="hover:text-tacticalgreen transition-colors">FŐOLDAL</a>
+                    <a href="#tortenet" class="hover:text-tacticalgreen transition-colors">HÁTTÉR</a>
+                    <a href="#juggernaut" class="hover:text-tacticalgreen transition-colors">JUGGERNAUT</a>
+                    <a href="#piac" class="hover:text-tacticalgreen transition-colors">FEKETE PIAC</a>
+                    <a href="#szabalyok" class="hover:text-tacticalgreen transition-colors">SZABÁLYKÖNYV</a>
+                    <a href="#terkep" class="hover:text-tacticalgreen transition-colors">PÁLYA</a>
+                </div>
+                <div>
+                    <button onclick="downloadCode()" class="bg-tacticalgreen hover:bg-emerald-600 text-black font-bold px-4 py-2 rounded text-sm transition-all shadow-lg shadow-emerald-900/40 flex items-center gap-2 font-mono-tech">
+                        <i class="fa-solid fa-download"></i> LETÖLTÉS (.HTML)
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative overflow-hidden py-24 lg:py-32 border-b border-bordercolor bg-gradient-to-b from-darkbg via-cardbg to-darkbg">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#10b981_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-5xl mx-auto px-4 text-center relative z-10">
+            <div class="inline-block px-3 py-1 rounded bg-tacticalgreen/10 border border-tacticalgreen/30 text-tacticalgreen text-xs font-mono-tech mb-6 tracking-widest uppercase">
+                Hivatalos Taktikai Játékszabályzat & Kézikönyv
+            </div>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 uppercase">
+                OPERATION: <span class="text-tacticalgreen">BLACK VAULT</span>
+            </h1>
+            <p class="text-xl sm:text-2xl text-slate-400 max-w-3xl mx-auto mb-10 font-medium">
+                „Két oldal. Két Juggernaut. Egyetlen cél: megszerezni a Vaultot.”
+            </p>
+
+            <!-- Info Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12 text-left font-mono-tech">
+                <div class="bg-cardbg p-4 rounded border border-bordercolor hud-border">
+                    <span class="text-xs text-slate-500 block">DÁTUM</span>
+                    <span class="text-tacticalgreen font-bold text-sm">[DÁTUM]</span>
+                </div>
+                <div class="bg-cardbg p-4 rounded border border-bordercolor hud-border">
+                    <span class="text-xs text-slate-500 block">HELYSZÍN</span>
+                    <span class="text-tacticalgreen font-bold text-sm">[HELYSZÍN]</span>
+                </div>
+                <div class="bg-cardbg p-4 rounded border border-bordercolor hud-border">
+                    <span class="text-xs text-slate-500 block">CSAPATOK</span>
+                    <span class="text-redteam font-bold text-sm">RED</span> <span class="text-white">vs</span> <span class="text-blueteam font-bold text-sm">BLUE</span>
+                </div>
+                <div class="bg-cardbg p-4 rounded border border-bordercolor hud-border">
+                    <span class="text-xs text-slate-500 block">JUGGERNAUT</span>
+                    <span class="text-tacticalorange font-bold text-sm">2 EGYSÉG</span>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#szabalyok" class="bg-tacticalgreen hover:bg-emerald-600 text-black font-bold px-8 py-3 rounded transition-all shadow-lg font-mono-tech">
+                    SZABÁLYKÖNYV MEGTEKINTÉSE
+                </a>
+                <a href="#piac" class="bg-cardbg hover:bg-slate-800 text-white border border-bordercolor font-bold px-8 py-3 rounded transition-all font-mono-tech">
+                    FEKETE PIAC & ÁRÚS
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Interactive Vault Simulator -->
+    <section class="py-16 max-w-4xl mx-auto px-4">
+        <div class="bg-cardbg border border-bordercolor rounded-xl p-6 lg:p-8 hud-border">
+            <div class="flex items-center justify-between mb-6 border-b border-bordercolor pb-4">
+                <h3 class="text-xl font-bold font-mono-tech text-tacticalgreen flex items-center gap-2">
+                    <i class="fa-solid fa-lock"></i> DIGITÁLIS SZÉF KÓDFEJTŐ SZIMULÁTOR
+                </h3>
+                <span class="text-xs font-mono-tech px-2 py-1 bg-tacticalorange/20 text-tacticalorange rounded">TESZT MÓD</span>
+            </div>
+            <p class="text-sm text-slate-400 mb-6">
+                Írd be a pályán elrejtett jelszót (pl. <code class="text-tacticalgreen bg-black px-2 py-1 rounded">RAVEN-4821</code>), hogy teszteld a széf nyitási mechanizmusát és a digitális pénzjóváírást!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input type="text" id="vaultCodeInput" placeholder="Add meg a jelszót (pl. RAVEN-4821)" class="bg-darkbg border border-bordercolor px-4 py-3 rounded text-white font-mono-tech flex-grow focus:outline-none focus:border-tacticalgreen">
+                <button onclick="testVault()" class="bg-tacticalgreen hover:bg-emerald-600 text-black font-bold px-6 py-3 rounded font-mono-tech transition-all">
+                    SZÉF NYITÁSA
+                </button>
+            </div>
+            <div id="vaultResult" class="mt-4 p-4 rounded bg-darkbg border border-bordercolor font-mono-tech text-sm hidden"></div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section id="tortenet" class="py-16 bg-cardbg/50 border-y border-bordercolor">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-3xl font-extrabold mb-8 uppercase font-mono-tech text-tacticalgreen">
+                // 01. HÁTTÉRTÖRTÉNET
+            </h2>
+            <div class="space-y-6 text-slate-300 leading-relaxed text-lg">
+                <p>
+                    A játék egy közeljövőben játszódó fiktív világban történik. Egy korábbi globális konfliktus után az állami rendszerek meggyengültek, és különböző katonai és gazdasági szervezetek vették át az irányítást.
+                </p>
+                <p>
+                    Két rivális szervezet – a <strong class="text-redteam">RED TEAM</strong> és a <strong class="text-blueteam">BLUE TEAM</strong> – küzd egy stratégiai terület ellen. Mindkét fél célja, hogy megszerezze a területen található pénzügyi erőforrásokat, adatokat és titkos információkat.
+                </p>
+                <p>
+                    A terület korábbi tulajdonosa különböző digitális széfekben rejtette el vagyonát és információit. A széfekhez szükséges jelszavakat szétszórták a pályán. A csapatoknak fel kell kutatniuk a terepet, pénzt kell gyűjteniük, és dönteniük kell a harc vagy a gazdasági előnyök megszerzése között.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Juggernaut Section -->
+    <section id="juggernaut" class="py-16 max-w-6xl mx-auto px-4">
+        <h2 class="text-3xl font-extrabold mb-8 uppercase font-mono-tech text-tacticalgreen">
+            // 02. JUGGERNAUT RENDSZER
+        </h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-cardbg p-6 rounded border border-bordercolor hud-border">
+                <h3 class="text-xl font-bold mb-4 text-tacticalorange">Működési elv & Találati felületek</h3>
+                <p class="text-slate-400 mb-4">
+                    A játékban pontosan 2 Juggernaut van speciális védőfelszerelésben. Normál testfelületük nem számít találati pontnak. Csak az <strong>első vagy hátsó fém találati tábla</strong> találata iktatja ki őket.
+                </p>
+                <div class="space-y-3 font-mono-tech text-sm">
+                    <div class="p-3 bg-darkbg border border-bordercolor rounded flex items-center justify-between">
+                        <span>1. ÁLLAPOT</span>
+                        <span class="text-tacticalgreen font-bold">AKTÍV</span>
+                    </div>
+                    <div class="text-center text-slate-500"><i class="fa-solid fa-arrow-down"></i></div>
+                    <div class="p-3 bg-darkbg border border-bordercolor rounded flex items-center justify-between">
+                        <span>2. TALÁLAT A FÉM TÁBLÁRA</span>
+                        <span class="text-redteam font-bold">INAKTÍV (Várakozik)</span>
+                    </div>
+                    <div class="text-center text-slate-500"><i class="fa-solid fa-arrow-down"></i></div>
+                    <div class="p-3 bg-darkbg border border-bordercolor rounded flex items-center justify-between">
+                        <span>3. JÁTÉKOS MEGÉRINTI</span>
+                        <span class="text-tacticalorange font-bold">RED / BLUE CSAPATBA ÁLL</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-cardbg p-6 rounded border border-bordercolor hud-border">
+                <h3 class="text-xl font-bold mb-4 text-tacticalgreen">Juggernaut Szabályok</h3>
+                <ul class="space-y-3 text-slate-300 text-sm">
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-tacticalgreen mt-1"><span>A Juggernaut kizárólag a kijelölt fém találati táblák találatára reagál.</span></i></li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-tacticalgreen mt-1"><span>Találat után azonnal inaktív: nem mozoghat, nem lőhet, a helyén marad.</span></i></li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-tacticalgreen mt-1"><span>Bármelyik csapat játékosa újraaktiválhatja szabályos megérintéssel.</span></i></li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-tacticalgreen mt-1"><span>Aktiválás után az adott csapathoz tartozik és támogatja őket.</span></i></li>
+                    <li class="flex items-start gap-2"><i class="fa-solid fa-check text-tacticalgreen mt-1"><span>Szigorúan betartja az airsoft biztonsági előírásokat.</span></i></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Black Market Section -->
+    <section id="piac" class="py-16 bg-cardbg/50 border-y border-bordercolor">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+                <h2 class="text-3xl font-extrabold uppercase font-mono-tech text-tacticalgreen">
+                    // 03. FEKETE PIAC / ÁRUS
+                </h2>
+                <div class="bg-darkbg px-4 py-2 rounded border border-bordercolor font-mono-tech text-sm">
+                    Kiválasztott tételek összege: <span id="marketTotal" class="text-tacticalorange font-bold">0</span> Játékpénz
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Item 1 -->
+                <div class="bg-cardbg border border-bordercolor p-5 rounded hud-border flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-tacticalgreen font-mono-tech text-xs">ÁR: 300 PÉNZ</span>
+                            <i class="fa-solid fa-heart-pulse text-tacticalgreen text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-1">+1 ÉLET</h4>
+                        <p class="text-slate-400 text-xs mb-4">Egy kijelölt játékos extra élettel rendelkezhet a harc során.</p>
+                    </div>
+                    <button onclick="addToMarket(300, '+1 Élet')" class="w-full bg-darkbg hover:bg-tacticalgreen hover:text-black border border-bordercolor text-white text-xs font-bold py-2 rounded font-mono-tech transition-colors">
+                        KIVÁLASZTÁS
+                    </button>
+                </div>
+                <!-- Item 2 -->
+                <div class="bg-cardbg border border-bordercolor p-5 rounded hud-border flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-tacticalgreen font-mono-tech text-xs">ÁR: 700 PÉNZ</span>
+                            <i class="fa-solid fa-shield-halved text-tacticalgreen text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-1">SEBEZHETETLENSÉG</h4>
+                        <p class="text-slate-400 text-xs mb-4">30 másodperces időtartamra védelmet biztosít.</p>
+                    </div>
+                    <button onclick="addToMarket(700, 'Sebezhetetlenség')" class="w-full bg-darkbg hover:bg-tacticalgreen hover:text-black border border-bordercolor text-white text-xs font-bold py-2 rounded font-mono-tech transition-colors">
+                        KIVÁLASZTÁS
+                    </button>
+                </div>
+                <!-- Item 3 -->
+                <div class="bg-cardbg border border-bordercolor p-5 rounded hud-border flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-tacticalgreen font-mono-tech text-xs">ÁR: 400 PÉNZ</span>
+                            <i class="fa-solid fa-kit-medical text-tacticalgreen text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-1">TÁRS GYÓGYÍTÁS</h4>
+                        <p class="text-slate-400 text-xs mb-4">Egy szabályosan kiesett játékos azonnal visszahozható.</p>
+                    </div>
+                    <button onclick="addToMarket(400, 'Társ Gyógyítás')" class="w-full bg-darkbg hover:bg-tacticalgreen hover:text-black border border-bordercolor text-white text-xs font-bold py-2 rounded font-mono-tech transition-colors">
+                        KIVÁLASZTÁS
+                    </button>
+                </div>
+                <!-- Item 4 -->
+                <div class="bg-cardbg border border-bordercolor p-5 rounded hud-border flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-3">
+                            <span class="text-tacticalgreen font-mono-tech text-xs">ÁR: 1000 PÉNZ</span>
+                            <i class="fa-solid fa-satellite text-tacticalgreen text-xl"></i>
+                        </div>
+                        <h4 class="font-bold text-lg mb-1">DRONE FELDERÍTÉS</h4>
+                        <p class="text-slate-400 text-xs mb-4">Rövid idejű felderítési és pozíció információ az ellenfélről.</p>
+                    </div>
+                    <button onclick="addToMarket(1000, 'Drone Felderítés')" class="w-full bg-darkbg hover:bg-tacticalgreen hover:text-black border border-bordercolor text-white text-xs font-bold py-2 rounded font-mono-tech transition-colors">
+                        KIVÁLASZTÁS
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rulebook Chapters -->
+    <section id="szabalyok" class="py-16 max-w-5xl mx-auto px-4">
+        <h2 class="text-3xl font-extrabold mb-8 uppercase font-mono-tech text-tacticalgreen">
+            // 04. HIVATALOS SZABÁLYKÖNYV (18 FEJEZET)
+        </h2>
+        <div class="space-y-4 font-mono-tech">
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>01 – Általános szabályok & Fair Play</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    A játék alapja a becsületesség, a sportszerűség és az airsoft biztonsági szabályok feltétlen betartása. Minden résztvevő saját felelősségére játszik.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>02 – Csapatok (Red vs Blue)</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    A játékosok két egyenlő erőre tervezett csapatra oszlanak. A csapatok feladata a bázisok védelme, a széfek fosztogatása és a Juggernautok irányításának megszerzése.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>03 – Találatok jelzése</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    Minden test- és felszereléstalálat érvényes. Találat esetén a játékos hangosan jelzi („Megvan!” / „Találat!”), felhúzza a sárga/piros halottjelző kendőjét, és a respawn pontra vonul.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>04 – Kiesés és Respawn</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    A respawn időt a szervezők határozzák meg a helyszínen ([____ perc]). Egyes képességek (mint a Társ Gyógyítás) ezt lerövidíthetik.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>05 – Juggernaut Rendszer</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    A két nehézvédett Juggernaut kizárólag a fém találati táblák eltalálásával iktatható ki. Megérintéssel állnak át a győztes csapathoz.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>06 – Pénzrendszer (Készpénz & Digitális)</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    A fizikai készpénzt a pályán gyűjtik a játékosok, míg a digitális pénz a széfek feltörésével kerül a csapat közös számlájára.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>07 – Széfek</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    Különböző értékű széfek (Kis: 200-500, Közepes: 500-1000, Nagy: 1000-5000 pénz), amelyek helyes jelszóval nyithatók meg.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>08 – Jelszavak</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    A pályán elrejtett kódok (pl. RAVEN-4821). Bizonyos széfek kinyitásához két külön jelszó (CODE A + CODE B) szükséges.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>09 – Fekete Piac</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    Ahol a csapatok játékpénzért cserébe extra életeket, sebezhetetlenséget, információt vagy pirotechnikai eszközöket vásárolhatnak.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>10 – Képességek & Bónuszok</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    Minden megvásárolt különleges képességet a szervezőnek kell ellenőriznie és jóváhagynia a visszaélések elkerülése érdekében.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>11 – Információs Rendszer</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    Az információ ugyanolyan értékes, mint a pénz. Titkos tippek vásárolhatók a széfek, kulcsok vagy Juggernaut pozíciók elhelyezkedéséről.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>12 – Küldetések (Side Missions)</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    Opcionális küldetések (Black Box, Recovery, Hunter, Vault), amelyek extra pénznyereményt és stratégiai előnyt biztosítanak.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>13 – Pálya és Objektumok</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    Red Base, Blue Base, Ipari Terület, Elhagyott Épület, Raktár és Erdő zónák alkotta dinamikus játéktér.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>14 – Győzelmi Rendszer</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    A pontszámítás nem csak a kilövésekre épül: a megmaradt pénz, megszerzett széfek, teljesített küldetések és objektumok összesítése adja a végeredményt.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>15 – Biztonsági Előírások</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    Kötelező teljes körű szemvédelem, minimális lövési távolságok, STOP GAME vészjelzés protokoll és sérülés esetén azonnali játékmegállítás.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>16 – Szervezői Rendszer & Játékmester</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    A szervezők felügyelik a szabályok betartását, kezelik a széfeket, jóváhagyják a vásárlásokat és döntenek a vitás helyzetekben.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>17 – Vitás Helyzetek Kezelése</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    Minden vitás szituációban a Játékmester döntése végleges és megfellebbezhetetlen. Vita esetén mindkét játékos halottnak minősül, amíg a békéltetés le nem zajlik.
+                </p>
+            </details>
+            <details class="bg-cardbg border border-bordercolor rounded p-4 hud-border cursor-pointer">
+                <summary class="font-bold text-white flex justify-between items-center">
+                    <span>18 – Játék Vége & Eredményhirdetés</span>
+                    <i class="fa-solid fa-chevron-down text-tacticalgreen"></i>
+                </summary>
+                <p class="text-slate-400 text-sm mt-3 font-sans">
+                    A záró sípszó után a csapatok visszatérnek a gyülekezőbe, ahol megtörténik a digitális számlák és fizikai pénzek összesítése, majd a győztes kihirdetése.
+                </p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Map & Locations -->
+    <section id="terkep" class="py-16 bg-cardbg/50 border-t border-bordercolor">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-extrabold mb-4 uppercase font-mono-tech text-tacticalgreen">
+                // 05. SEMATIKUS PÁLYATÉRKÉP
+            </h2>
+            <p class="text-slate-400 mb-8 text-sm font-mono-tech">
+                [HELYSZÍN] – Taktikai Zónák Layout
+            </p>
+            <div class="bg-darkbg border border-bordercolor rounded-xl p-8 hud-border grid grid-cols-1 sm:grid-cols-3 gap-6 font-mono-tech text-sm">
+                <div class="p-4 bg-redteam/10 border border-redteam/30 rounded text-redteam font-bold">
+                    🔴 RED BASE (Észak)
+                </div>
+                <div class="p-4 bg-tacticalgreen/10 border border-tacticalgreen/30 rounded text-tacticalgreen font-bold">
+                    🏭 IPARI TERÜLET & SZÉFEK
+                </div>
+                <div class="p-4 bg-blueteam/10 border border-blueteam/30 rounded text-blueteam font-bold">
+                    🔵 BLUE BASE (Dél)
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-bordercolor text-center text-xs font-mono-tech text-slate-500">
+        <p class="mb-2">OPERATION: BLACK VAULT — OFFICIAL AIRSOFT RULEBOOK & MANIFESTO</p>
+        <p>[SZERVEZŐ] | [KAPCSOLAT]</p>
+    </footer>
+
+    <!-- JavaScript logic -->
+    <script>
+        function downloadCode() {
+            const htmlContent = document.documentElement.outerHTML;
+            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'index.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function testVault() {
+            const input = document.getElementById('vaultCodeInput').value.trim();
+            const resultBox = document.getElementById('vaultResult');
+            resultBox.classList.remove('hidden');
+
+            if (input.toUpperCase() === 'RAVEN-4821') {
+                resultBox.className = "mt-4 p-4 rounded bg-tacticalgreen/20 border border-tacticalgreen font-mono-tech text-sm text-tacticalgreen";
+                resultBox.innerHTML = '<i class="fa-solid fa-check-circle"></i> HELYES JELSZÓ! Széf kinyitva. +1500 Játékpénz jóváírva a csapat számlájára.';
+            } else {
+                resultBox.className = "mt-4 p-4 rounded bg-redteam/20 border border-redteam font-mono-tech text-sm text-redteam";
+                resultBox.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> ÉRVÉNYTELEN JELSZÓ! A széf zárva maradt. Keresd meg a helyes kódot a pályán!';
+            }
+        }
+
+        let currentTotal = 0;
+        function addToMarket(price, name) {
+            currentTotal += price;
+            document.getElementById('marketTotal').innerText = currentTotal;
+            alert(`Sikeres kosárba tétel: ${name} (${price} pénz).`);
+        }
+    </script>
+</body>
+</html>
